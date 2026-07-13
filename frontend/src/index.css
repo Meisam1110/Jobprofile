@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --surface-1: #fcfcfb;
+  --plane: #f9f9f7;
+  --text-primary: #0b0b0b;
+  --text-secondary: #52514e;
+  --text-muted: #898781;
+  --grid: #e1e0d9;
+  --series-1: #2a78d6;
+  --series-2: #1baf7a;
+  --series-3: #eda100;
+  --series-4: #008300;
+  --series-5: #4a3aa7;
+  --series-6: #e34948;
+}
+
+body {
+  @apply bg-plane text-ink font-sans antialiased;
+}
+
+.card {
+  @apply bg-surface rounded-xl border border-black/10 shadow-sm;
+}
+
+.btn {
+  @apply inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-sm font-medium transition-colors;
+}
+.btn-primary {
+  @apply btn bg-brand-ink text-white hover:bg-black;
+}
+.btn-brand {
+  @apply btn bg-brand text-brand-ink hover:bg-brand-dark;
+}
+.btn-ghost {
+  @apply btn border border-black/10 bg-white text-ink-secondary hover:bg-plane;
+}
+
+.input {
+  @apply w-full rounded-lg border border-black/15 bg-white px-3 py-1.5 text-sm outline-none focus:border-series-1 focus:ring-1 focus:ring-series-1;
+}
+
+.label {
+  @apply mb-1 block text-xs font-semibold uppercase tracking-wide text-ink-muted;
+}
+
+.tab {
+  @apply whitespace-nowrap border-b-2 border-transparent px-3 py-2 text-sm font-medium text-ink-secondary hover:text-ink;
+}
+.tab-active {
+  @apply border-brand-ink text-ink;
+}
