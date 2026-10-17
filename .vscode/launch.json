@@ -1,0 +1,21 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "JPMS API (FastAPI)",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "uvicorn",
+      "args": ["app.main:app", "--port", "8000", "--reload"],
+      "cwd": "${workspaceFolder}/backend",
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Import master workbook",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/scripts/import_excel.py",
+      "console": "integratedTerminal"
+    }
+  ]
+}
