@@ -10,6 +10,19 @@ on the organization's own data:
   Education, Experience, Technical/Behavioral Competencies, Trainings, General Working
   Condition, Performance Standards, Signoff) drive the data model, UI and exports
 
+## Windows installer (no prerequisites)
+
+An offline, double-click installer is built from this repo (bundles Python, all
+libraries, the built UI and a database pre-loaded with every profile):
+
+```bash
+python packaging/build_windows_bundle.py     # -> dist-windows/JobProfile-Windows-Setup.zip
+```
+
+On the Windows PC: unzip, run `Install.bat`, choose **Personal** (this PC only,
+Desktop icon, starts at sign-in) or **Server** (shared on your network, starts at
+boot, firewall rule, random passwords). See `packaging/windows/README.txt`.
+
 ## Quick start
 
 ```bash

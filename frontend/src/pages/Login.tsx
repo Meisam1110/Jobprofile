@@ -46,7 +46,7 @@ export default function Login({ onLogin }: { onLogin: (u: User) => void }) {
         </div>
         <form className="p-8" onSubmit={submit}>
           <h1 className="text-lg font-bold">Sign in</h1>
-          <p className="mb-4 text-xs text-ink-muted">Demo build — password is “demo” for every role.</p>
+          <p className="mb-4 text-xs text-ink-muted">Default password is “demo” unless your administrator changed it.</p>
           <label className="label" htmlFor="username">Role</label>
           <div className="mb-3 space-y-1.5">
             {DEMO_ROLES.map((r) => (

@@ -5,6 +5,32 @@
 - Node.js 20+
 - (Production) PostgreSQL 14+; (optional) an Anthropic API key for generative AI
 
+## Windows installer (recommended for end users)
+
+Build the bundle once on any machine with Python 3.11+, Node 20+ and internet:
+
+```bash
+pip install -r backend/requirements.txt
+python packaging/build_windows_bundle.py
+```
+
+This creates `dist-windows/JobProfile-Windows-Setup.zip` (~36 MB): embeddable Python 3.11
+for Windows with every dependency pre-extracted, the built frontend, the backend and a
+database already loaded with the master workbook. Nothing needs to be installed on the
+target PC and no internet is required there.
+
+Install: unzip -> double-click `Install.bat` -> choose
+
+| Mode | For | What it sets up |
+|---|---|---|
+| Personal | one user | `%LOCALAPPDATA%\JobProfile`; Desktop + Start menu icon; server auto-starts at sign-in (Startup folder); listens on 127.0.0.1 only |
+| Server | shared team | `%ProgramData%\JobProfile` (asks for admin); Scheduled Task starts the server at boot as SYSTEM; Windows Firewall rule for TCP 8000 (Private/Domain profiles); listens on 0.0.0.0; random passwords for admin/hr/manager written to `config.bat` |
+
+Both modes register in Settings > Apps and keep `userdata\jobprofile.db` and `config.bat` across
+upgrades. Server-mode passwords travel over plain HTTP — use on a trusted network or behind
+an HTTPS reverse proxy. Per-role passwords are the `JPMS_PASSWORD_{ADMIN,HR,MANAGER,EMPLOYEE}`
+environment variables (default `demo`).
+
 ## Local / demo install
 
 ```bash

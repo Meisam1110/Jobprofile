@@ -19,7 +19,13 @@ DEMO_USERS = {
     "manager": {"full_name": "Line Manager", "role": "manager"},
     "employee": {"full_name": "Employee", "role": "employee"},
 }
-DEMO_PASSWORD = "demo"
+
+
+def expected_password(username: str) -> str | None:
+    """Configured password for a demo user (None if the user is unknown)."""
+    if username not in DEMO_USERS:
+        return None
+    return getattr(settings, f"password_{username}")
 
 
 class CurrentUser:

@@ -26,6 +26,13 @@ class Settings(BaseSettings):
     # Demo auth secret (replace with SSO / Entra ID in production; see docs).
     auth_secret: str = "change-me-in-production"
 
+    # Per-role demo passwords. The installer's server mode generates random
+    # ones; the defaults are only suitable for a single-user local install.
+    password_admin: str = "demo"
+    password_hr: str = "demo"
+    password_manager: str = "demo"
+    password_employee: str = "demo"
+
     class Config:
         env_prefix = "JPMS_"
         env_file = ".env"

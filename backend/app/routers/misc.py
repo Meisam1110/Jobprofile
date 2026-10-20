@@ -9,7 +9,9 @@ from sqlalchemy.orm import Session
 
 from .. import models, schemas
 from ..database import get_db
-from ..security import DEMO_PASSWORD, DEMO_USERS, CurrentUser, get_current_user, make_token, require_role
+import hmac
+
+from ..security import DEMO_USERS, CurrentUser, expected_password, get_current_user, make_token, require_role
 from ..services.similarity import INDEX, find_duplicates
 from ..services.versioning import audit
 
@@ -20,8 +22,9 @@ router = APIRouter(prefix="/api", tags=["core"])
 @router.post("/auth/login", response_model=schemas.LoginResponse)
 def login(payload: schemas.LoginRequest):
     user = DEMO_USERS.get(payload.username)
-    if not user or payload.password != DEMO_PASSWORD:
-        raise HTTPException(401, "Invalid credentials (demo users: admin/hr/manager/employee, password 'demo')")
+    expected = expected_password(payload.username)
+    if not user or expected is None or not hmac.compare_digest(payload.password.encode(), expected.encode()):
+        raise HTTPException(401, "Invalid username or password")
     return {
         "token": make_token(payload.username, user["role"]),
         "username": payload.username,
